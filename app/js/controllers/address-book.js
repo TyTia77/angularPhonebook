@@ -6,7 +6,8 @@ angular.module('myApp')
         // variables
         const This = $scope;
         // const apiUrl = 'http://localhost:5000/contacts';
-        const apiUrl = 'https://shrouded-lake-43811.herokuapp.com/contacts';
+        const apiUrl = 'http://60.242.62.79:5000/contacts';
+        // const apiUrl = 'https://shrouded-lake-43811.herokuapp.com/contacts';
 
         var colours = [
             '#db4540',
