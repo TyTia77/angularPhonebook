@@ -1,0 +1,121 @@
+[{
+  "id": 1,
+  "first_name": "Carol",
+  "last_name": "Shaw",
+  "email": "cshaw0@wordpress.org",
+  "gender": "Female"
+}, {
+  "id": 2,
+  "first_name": "Martin",
+  "last_name": "Holmes",
+  "email": "mholmes1@ycombinator.com",
+  "gender": "Male"
+}, {
+  "id": 3,
+  "first_name": "Jack",
+  "last_name": "Davis",
+  "email": "jdavis2@uiuc.edu",
+  "gender": "Male"
+}, {
+  "id": 4,
+  "first_name": "Heather",
+  "last_name": "Phillips",
+  "email": "hphillips3@mit.edu",
+  "gender": "Female"
+}, {
+  "id": 5,
+  "first_name": "Nicholas",
+  "last_name": "Jenkins",
+  "email": "njenkins4@smugmug.com",
+  "gender": "Male"
+}, {
+  "id": 6,
+  "first_name": "Alan",
+  "last_name": "Stewart",
+  "email": "astewart5@howstuffworks.com",
+  "gender": "Male"
+}, {
+  "id": 7,
+  "first_name": "Jack",
+  "last_name": "Romero",
+  "email": "jromero6@youtube.com",
+  "gender": "Male"
+}, {
+  "id": 8,
+  "first_name": "Lisa",
+  "last_name": "Ramos",
+  "email": "lramos7@infoseek.co.jp",
+  "gender": "Female"
+}, {
+  "id": 9,
+  "first_name": "Annie",
+  "last_name": "Ortiz",
+  "email": "aortiz8@businessinsider.com",
+  "gender": "Female"
+}, {
+  "id": 10,
+  "first_name": "Stephanie",
+  "last_name": "Johnson",
+  "email": "sjohnson9@seesaa.net",
+  "gender": "Female"
+}, {
+  "id": 11,
+  "first_name": "Steve",
+  "last_name": "Lee",
+  "email": "sleea@youtu.be",
+  "gender": "Male"
+}, {
+  "id": 12,
+  "first_name": "Diana",
+  "last_name": "Burton",
+  "email": "dburtonb@ning.com",
+  "gender": "Female"
+}, {
+  "id": 13,
+  "first_name": "Craig",
+  "last_name": "Willis",
+  "email": "cwillisc@yolasite.com",
+  "gender": "Male"
+}, {
+  "id": 14,
+  "first_name": "Richard",
+  "last_name": "Stephens",
+  "email": "rstephensd@unc.edu",
+  "gender": "Male"
+}, {
+  "id": 15,
+  "first_name": "Martha",
+  "last_name": "Morgan",
+  "email": "mmorgane@ed.gov",
+  "gender": "Female"
+}, {
+  "id": 16,
+  "first_name": "James",
+  "last_name": "Gonzales",
+  "email": "jgonzalesf@vistaprint.com",
+  "gender": "Male"
+}, {
+  "id": 17,
+  "first_name": "Russell",
+  "last_name": "Kennedy",
+  "email": "rkennedyg@google.ca",
+  "gender": "Male"
+}, {
+  "id": 18,
+  "first_name": "Katherine",
+  "last_name": "Harris",
+  "email": "kharrish@wisc.edu",
+  "gender": "Female"
+}, {
+  "id": 19,
+  "first_name": "Wayne",
+  "last_name": "Meyer",
+  "email": "wmeyeri@geocities.jp",
+  "gender": "Male"
+}, {
+  "id": 20,
+  "first_name": "Clarence",
+  "last_name": "Morales",
+  "email": "cmoralesj@baidu.com",
+  "gender": "Male"
+}]

@@ -1,0 +1,77 @@
+.search-container {
+    display: block;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+
+    input {
+        width: 35%;
+        height: 30px;
+        border-radius: 5px;
+        border: 2px solid grey;
+        font-size: 20px;
+        text-indent: 5px;
+        transition-duration: $transition;
+
+        &:focus {
+            outline: none;
+            width: 50%;
+        }
+    }
+}
+
+.listview,
+.listview-header {
+    display: flex;
+    text-align: left;
+    width: 60%;
+    margin: 0 auto;
+
+    span {
+        flex: 1 1 0;
+        padding-top: 20px;
+        text-transform: capitalize;
+        overflow: hidden;
+        text-overflow: ellipsis;
+
+        .display {
+            @include initialLogo(70px);
+        }
+
+        &:first-of-type {
+            text-align: center;
+            // font-size: 40px;
+            padding: 0;
+            color: #fff;
+        }
+    }
+}
+
+.listview-container {
+    flex: 1 1 0;
+    overflow-y: auto;
+}
+
+.listview-header {
+    position: relative;
+    font-weight: bold;
+    color: #768182;
+    font-size: 26px;
+    letter-spacing: 2px;
+}
+
+.listview {
+    border-bottom: 1px solid lightgrey;
+    padding: 10px 0;
+    color: #505161;
+    font-size: 30px;
+    will-change: background-color;
+    transition-duration: $transition;
+
+    &:hover {
+        color: orange;
+        cursor: pointer;
+        // border-bottom: 5px solid lightgrey;
+    }
+    // @include hoverScale;
+}

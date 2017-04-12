@@ -1,0 +1,60 @@
+<section class="dialog-add-contact dialog">
+    <header>
+        <span class="fa fa-user-plus header-icon" aria-hidden="true"></span> Add New Contact
+    </header>
+    <div class="close-button-container">
+        <span class="fa fa-times-circle close-button" aria-hidden="true" ng-click="handleDialog($event, '.dialog-add-contact', true)"></span>
+    </div>
+
+    <section>
+        <div class="dialog-body-container">
+            <div class="row">
+                <article>firstname</article>
+                <article><input id="newContactFirstName" type="text" ng-model="dialogAddNewContact.inputValues.first_name"></article>
+            </div>
+            <div class="row">
+                <article>lastname</article>
+                <article><input id="newContactLastName" type="text" ng-model="dialogAddNewContact.inputValues.last_name"></article>
+            </div>
+            <div class="row">
+                <article>email</article>
+                <article><input id="newContactEmail" type="text" ng-model="dialogAddNewContact.inputValues.email"></article>
+            </div>
+            <div class="row">
+                <article>Mobile</article>
+                <article><input id="newContactMobile" type="text" ng-model="dialogAddNewContact.inputValues.phone_mob"></article>
+            </div>
+            <div class="row">
+                <article>Home Phone</article>
+                <article><input id="newContactPhoneHome" type="text" ng-model="dialogAddNewContact.inputValues.phone_home"></article>
+            </div>
+            <div class="row">
+                <article>Work Phone</article>
+                <article><input id="newContactPhoneWork" type="text" ng-model="dialogAddNewContact.inputValues.phone_work"></article>
+            </div>
+            <div class="row">
+                <article>gender</article>
+                <article>
+                    Male<input type="radio" name="gender" value="male" ng-model="dialogAddNewContact.inputValues.gender" >
+                    Female<input type="radio" name="gender" value="female" ng-model="dialogAddNewContact.inputValues.gender" >
+                </article>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <footer >
+        <div class="apply-button-container {{checkAddNewContactClearAllButton()}}" ng-click="handleclearAllFields()">
+            Clear All
+            <span class="fa fa-minus-circle dialog-footer-apply-button" aria-hidden="true"></span>
+        </div>
+        <div class="apply-button-container {{makeButtonActive()}}" ng-click="handleAddNewContact($event)">
+            Add Contact
+            <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
+        </div>
+    </footer>
+
+</section>

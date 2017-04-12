@@ -1,0 +1,125 @@
+@import 'dialogs/contact-details';
+@import 'dialogs/create-new-contact';
+@import 'dialogs/settings';
+
+.dialog {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: white;
+    opacity: 0;
+    z-index: -1;
+    transition-duration: 0.3s;
+    border-radius: 5px;
+    box-shadow: $shadow;
+    will-change: opacity;
+
+    header {
+        display: inline;
+        position: relative;
+        font-size: 40px;
+        background-color: $blue;
+        // background: $greenblue;
+        padding: 10px;
+        box-sizing: border-box;
+        color: white;
+        text-align: left;
+        letter-spacing: 2px;
+        text-transform: capitalize;
+        // box-shadow: 0px 4px 12px -1px #000;
+    }
+
+    section {
+        display: block;
+        margin: 20px;
+        flex: 1 1 0;
+        display: flex;
+
+        .dialog-body-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: calc(100% - 20px);
+
+            .row {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                height: 100%;
+
+                article {
+                    flex: 1 1 0;
+                    padding: 10px;
+
+                    &:nth-of-type(2n + 1) {
+                        text-align: right;
+                        font-size: 25px;
+                        max-width: 40%;
+                        color: #505161;
+                    }
+                }
+            }
+        }
+    }
+
+    .close-button-container {
+        display: block;
+        background-color: #fff;
+        height: 54px;
+        width: 54px;
+        border-radius: 27px;
+        position: absolute;
+        right: -25px;
+        top: -25px;
+    }
+
+    .close-button {
+        position: relative;
+        top: -5px;
+        font-size: 4em;
+        color: red;
+        transition-duration: $transition;
+        @include hoverScale;
+    }
+
+    footer {
+        display: block;
+        text-align: center;
+        font-size: 30px;
+        color: lightgrey;
+        transition-duration: $transition;
+        will-change: transition;
+
+        .apply-button-container {
+            display: inline-block;
+            position: relative;
+            top: -15px;
+            width: auto;
+            padding: 5px;
+            border-radius: 5px;
+            border: 2px solid lightgrey;
+            color: lightgrey;
+            pointer-events: none;
+            transition-duration: $transition;
+            will-change: transform;
+            background-color: #f7f7f7;
+        }
+
+        .active {
+            border: 2px solid green;
+            color: green;
+            pointer-events: all;
+
+            &:hover {
+                cursor: pointer;
+                color: white;
+                background-color: green;
+            }
+        }
+    }
+}
+
+.dialog[opened=true] {
+    opacity: 1;
+    z-index: 1;
+}

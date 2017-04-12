@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="header">
+        <label class="header-label"><span class="fa fa-address-book" aria-hidden="true"></span> contacts</label>
+        <div class="add-button-container">
+        </div>
+
+        <div class="header-icon-container">
+            <span class="fa fa-user-plus header-icon" aria-hidden="true" ng-click="handleDialog($event, '.dialog-add-contact', false)"></span>
+            <span class="fa fa-cog header-icon" aria-hidden="true" ng-click="handleDialog($event, '.dialog-settings', false)"></span>
+        </div>
+
+    </div>
+    <main>
+        <div class="search-container">
+            <input type="text" placeholder="search" ng-model="search">
+        </div>
+
+        <header class="listview-header">
+            <span>&nbsp;</span>
+            <span>firstname</span>
+            <span>lastname</span>
+        </header>
+
+        <div class="listview-container">
+            <div class="listview" ng-repeat="x in contactList | orderBy: sortByValue | filter: search" ng-click="handleDialog($event, '.dialog-contact', false)">
+                <span class="contactId" data-id="{{x.id}}">
+                    <div class="display" style="background-color: {{x.colour}}">{{x.initials}}</div>
+                </span>
+                <span>{{x.first_name}}</span>
+                <span>{{x.last_name}}</span>
+            </div>
+        </div>
+    </main>
+</div>
+
+
+<!-- dialogs -->
+<div ng-include src="'app/view/dialogs/contact-detail.html'"></div>
+<div ng-include src="'app/view/dialogs/settings.html'"></div>
+<div ng-include src="'app/view/dialogs/add-new-contact.html'"></div>

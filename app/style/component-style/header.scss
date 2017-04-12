@@ -1,0 +1,43 @@
+.header {
+    position: relative;
+    text-align: center;
+    font-size: 24px;
+    color: #fff;
+    text-transform: uppercase;
+
+    .header-label {
+        display: block;
+        position: relative;
+        top: 15px;
+        color: #fff;
+        padding-left: 10px;
+        letter-spacing: 4px;
+        font-family: Impact;
+        font-size: 34px;
+        text-align: left;
+        // color: orange;
+        span {
+            // color: orange;
+        }
+    }
+
+    .header-icon-container {
+        position: absolute;
+        top: 0;
+        right: 0;
+        height: 100%;
+        width: 130px;
+        display: flex;
+        flex-direction: row;
+
+        .header-icon {
+            display: inline-block;
+            font-size: 40px;
+            padding-top: 10px;
+            flex: 1 1 0;
+            will-change: transform;
+            transition-duration: $transition;
+            @include hoverScale;
+        }
+    }
+}

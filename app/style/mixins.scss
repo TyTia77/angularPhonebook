@@ -1,0 +1,26 @@
+@mixin hoverScale{
+    &:hover{
+        cursor: pointer;
+        transform: scale(1.2, 1.2);
+    }
+}
+
+@mixin initialLogo($size){
+    display: block;
+    background-color: red;
+    height: $size;
+    width: $size;
+    border-radius: ($size / 2);
+    margin: 0 auto;
+    line-height: 1.7;
+    font-size: ($size * .57);
+    font-size: ($size * .6);
+    color: #fff;
+}
+
+// media queries
+@mixin mQ($arg){
+    @media screen and (max-width: $arg){
+        @content;
+    }
+}
