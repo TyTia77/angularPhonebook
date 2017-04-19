@@ -1,6 +1,6 @@
-app.service('myService', function(){
+app.service('myService',[ '$rootScope', function($rootScope){
 
-    var initialised = false;
+    var sortByValue = 'first_name';
 
     var colours = [
         '#db4540',
@@ -15,6 +15,16 @@ app.service('myService', function(){
 
     this.getColours = function(index){
         return colours[index];
+    };
+
+    this.getSortByValue = function(){
+        return sortByValue;
+    }
+
+    this.setSortByValue = function(value){
+        sortByValue = value;
+
+        $rootScope.$emit('sortByChange', value);
     };
 
     this.setContactList = function(contactList){
@@ -32,12 +42,4 @@ app.service('myService', function(){
             return this.contactList;
         }
     };
-
-    this.getInitialised = function(){
-        return initialised;
-    };
-
-    this.setInitialised = function(){
-        initialised = true;
-    }
-});
+}]);

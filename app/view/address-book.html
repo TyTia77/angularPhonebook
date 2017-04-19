@@ -17,12 +17,13 @@
 
         <header class="listview-header">
             <span>&nbsp;</span>
+            <test-eleabc></test-eleabc>
             <span>firstname</span>
             <span>lastname</span>
         </header>
 
         <div class="listview-container">
-            <div class="listview" ng-repeat="x in contactList | orderBy: sortByValue | filter: search" ng-click="toggleContactDialog()">
+            <div class="listview" ng-repeat="x in contactList | orderBy: sortByValue | filter: search" ng-click="toggleContactDialog(x.id)">
                 <span class="contactId" data-id="{{x.id}}">
                     <div class="display" ng-style="{'background-color': x.colour}">{{x.initials}}</div>
                 </span>

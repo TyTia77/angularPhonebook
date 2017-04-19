@@ -1,21 +1,23 @@
-<custom-dialog title="'settings'" class="'dialog-settings'" test-controller="dialogSettingCtrl">
-    <dialog-body ng-controller="dialogSettingCtrl">
-        <div class="dialog-body-container">
-            <div class="row">
-                <article>Sort Contact By</article>
-                <article>
-                    <select name="" id="sortby" ng-model="sortByValue" ng-click="settingApply.validate(handleSettingValidate, sortByValue)">
-                        <option value="first_name">firstname</option>
-                        <option value="last_name">lastname</option>
-                    </select>
-                </article>
+<div ng-controller="dialogSettingCtrl">
+    <custom-dialog title="'settings'" class="'dialog-settings'" controller="dialogSettingCtrl">
+        <dialog-body>
+            <div class="dialog-body-container">
+                <div class="row">
+                    <article>Sort Contact By</article>
+                    <article>
+                        <select name="" id="sortby" ng-model="sortByValue" ng-click="settingApply.validate(handleSettingValidate, sortByValue)">
+                            <option value="first_name">firstname</option>
+                            <option value="last_name">lastname</option>
+                        </select>
+                    </article>
+                </div>
             </div>
-        </div>
-    </dialog-body>
-    <dialog-footer ng-controller="dialogSettingCtrl">
-        <div class="apply-button-container ng-class:{'active': settingApply.getActive()}"  ng-click="settingApply.handleClick(handleSettingSubmit)">
-            Apply
-            <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
-        </div>
-    </dialog-footer>
-</custom-dialog>
+        </dialog-body>
+        <dialog-footer>
+            <div class="apply-button-container ng-class:{'active': settingApply.getActive()}"  ng-click="settingApply.handleClick(handleSettingSubmit)">
+                Apply
+                <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
+            </div>
+        </dialog-footer>
+    </custom-dialog>
+</div>

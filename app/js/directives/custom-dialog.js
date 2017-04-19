@@ -19,8 +19,8 @@ app.directive('customDialog', [ function(){
         // controller: function($scope){
         //
         // }
-        // controller: 'addressCtrl'
+        // controller: 'dialogSettingCtrl'
         controller: '@',
-        name: 'testController'
+        name: 'controller'
     };
 }]);
