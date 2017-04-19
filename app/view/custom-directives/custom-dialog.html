@@ -1,0 +1,17 @@
+<div class="{{class}} dialog" opened="{{openState}}">
+    <header>
+        <!-- <span class="fa fa-cog header-icon" aria-hidden="true"></span> -->
+        {{title}}
+    </header>
+    <div class="close-button-container">
+        <span class="fa fa-times-circle close-button" aria-hidden="true" ng-click="toggle()"></span>
+    </div>
+
+    <section>
+        <div ng-transclude="body" ng-style="{'margin': '0 auto'}"></div>
+    </section>
+
+    <footer >
+        <div ng-transclude="footer"></div>
+    </footer>
+</div>

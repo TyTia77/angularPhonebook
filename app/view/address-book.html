@@ -5,8 +5,8 @@
         </div>
 
         <div class="header-icon-container">
-            <span class="fa fa-user-plus header-icon" aria-hidden="true" ng-click="handleDialog($event, '.dialog-add-contact', false)"></span>
-            <span class="fa fa-cog header-icon" aria-hidden="true" ng-click="handleDialog($event, '.dialog-settings', false)"></span>
+            <span class="fa fa-user-plus header-icon" aria-hidden="true" ng-click="toggleAddNewDialog()"></span>
+            <span class="fa fa-cog header-icon" aria-hidden="true" ng-click="toggleSettingDialog()"></span>
         </div>
 
     </div>
@@ -22,9 +22,9 @@
         </header>
 
         <div class="listview-container">
-            <div class="listview" ng-repeat="x in contactList | orderBy: sortByValue | filter: search" ng-click="handleDialog($event, '.dialog-contact', false)">
+            <div class="listview" ng-repeat="x in contactList | orderBy: sortByValue | filter: search" ng-click="toggleContactDialog()">
                 <span class="contactId" data-id="{{x.id}}">
-                    <div class="display" style="background-color: {{x.colour}}">{{x.initials}}</div>
+                    <div class="display" ng-style="{'background-color': x.colour}">{{x.initials}}</div>
                 </span>
                 <span>{{x.first_name}}</span>
                 <span>{{x.last_name}}</span>
@@ -33,8 +33,7 @@
     </main>
 </div>
 
-
 <!-- dialogs -->
-<div ng-include src="'app/view/dialogs/contact-detail.html'"></div>
-<div ng-include src="'app/view/dialogs/settings.html'"></div>
-<div ng-include src="'app/view/dialogs/add-new-contact.html'"></div>
+<div ng-include="'app/view/dialogs/settings.html'"></div>
+<div ng-include="'app/view/dialogs/new-contact.html'"></div>
+<div ng-include="'app/view/dialogs/contact-details.html'"></div>

@@ -10,13 +10,13 @@ const watch = require('gulp-watch');
 gulp.task('buildjs', () => {
     return gulp
         // .src('[app/js/**/*.+(js|css)]')
-        .src(['app/js/angular.js', 'app/js/controllers/**/*.js'])
+        .src(['app/js/angular.js', 'app/js/directives/**/*.js', 'app/js/services/**/*.js', 'app/js/factories/**/*.js', 'app/js/controllers/**/*.js'])
         .pipe(babel({
             presets: ['es2015']
         }))
         .pipe(concat('script.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest('dist/scripts'));
+        .pipe(gulp.dest('app/dist/scripts'));
 });
 
 gulp.task('buildcss', () => {
@@ -32,7 +32,7 @@ gulp.task('buildcss', () => {
             cascade: false
         }))
         .pipe(concat('style.min.css'))
-        .pipe(gulp.dest('dist/styles'));
+        .pipe(gulp.dest('app/dist/styles'));
 });
 
 gulp.task('watch', () => {

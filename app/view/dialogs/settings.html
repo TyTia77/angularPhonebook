@@ -1,29 +1,21 @@
-<section class="dialog-settings dialog">
-    <header>
-        <span class="fa fa-cog header-icon" aria-hidden="true"></span> settings
-    </header>
-    <div class="close-button-container">
-        <span class="fa fa-times-circle close-button" aria-hidden="true" ng-click="handleDialog($event, '.dialog-settings', true)"></span>
-    </div>
-
-    <section>
+<custom-dialog title="'settings'" class="'dialog-settings'" test-controller="dialogSettingCtrl">
+    <dialog-body ng-controller="dialogSettingCtrl">
         <div class="dialog-body-container">
             <div class="row">
                 <article>Sort Contact By</article>
                 <article>
-                    <select name="" id="sortby" ng-model="sortByValue" ng-change="handleSortByChange(sortByValue)">
+                    <select name="" id="sortby" ng-model="sortByValue" ng-click="settingApply.validate(handleSettingValidate, sortByValue)">
                         <option value="first_name">firstname</option>
                         <option value="last_name">lastname</option>
                     </select>
                 </article>
             </div>
         </div>
-    </section>
-
-    <footer ng-click="handleSort($event)">
-        <div class="apply-button-container {{checkActive(sortByValue)}}">
+    </dialog-body>
+    <dialog-footer ng-controller="dialogSettingCtrl">
+        <div class="apply-button-container ng-class:{'active': settingApply.getActive()}"  ng-click="settingApply.handleClick(handleSettingSubmit)">
             Apply
             <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
         </div>
-    </footer>
-</section>
+    </dialog-footer>
+</custom-dialog>

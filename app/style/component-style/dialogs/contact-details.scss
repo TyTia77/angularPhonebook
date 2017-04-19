@@ -1,14 +1,9 @@
 .dialog-contact {
-    height: 700px;
-    width: 600px;
-    top: calc(100vh / 2 - 350px);
-    left: calc(100vw / 2 - 300px);
-    // .contact-detail-container {
-    // display: flex;
-    // flex-direction: row;
-    // height: 100%;
-    // align-items: center;
-    // justify-content: center;
+    height: 600px;
+    width: 500px;
+    top: calc(100vh / 2 - 300px);
+    left: calc(100vw / 2 - 250px);
+
     .image-container {
         flex: 1 1 0;
         text-align: center;
@@ -18,7 +13,6 @@
             // box-shadow: 3px 4px 11px 2px #000;
             margin-bottom: 20px;
         }
-        // }
     }
 
     .apply-button-container.active {
@@ -40,11 +34,6 @@
             }
         }
     }
-
-    // .test{
-    //     border: none;
-    //     pointer-events: none;
-    // }
 
     input{
         border: none;

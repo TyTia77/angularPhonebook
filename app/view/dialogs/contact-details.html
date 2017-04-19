@@ -1,0 +1,61 @@
+<custom-dialog title="'contact detail'" class="'dialog-contact'" test-controller="dialogContactCtrl">
+
+    <dialog-body>
+        <div class="dialog-body-container">
+            <div class="image-container">
+                 <div class="display" ng-style="{'background-color': contactDetail.colour}">
+                     {{contactDetail.initials}}
+                 </div>
+            </div>
+
+            <div class="row">
+                <article>Firstname</article>
+                <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.first_name"></article>
+            </div>
+
+            <div class="row">
+                <article>Lastname</article>
+                <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.last_name"></article>
+            </div>
+
+            <div class="row">
+                <article>email</article>
+                <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.email"></article>
+            </div>
+
+            <div class="row">
+                <article>gender</article>
+                <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.gender"></article>
+            </div>
+
+            <div class="row">
+                <article>mobile</article>
+                <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.phone_mob"></article>
+            </div>
+
+        </div>
+    </dialog-body>
+
+    <dialog-footer>
+        <div  class="apply-button-container active" ng-if="!contactDetailEditMode" ng-click="contactDetailEdit.handleClick(handleContactDetailEditClick)">
+            Edit
+            <span class="fa fa-pencil dialog-footer-apply-button" aria-hidden="true"></span>
+        </div>
+
+        <div ng-if="contactDetailEditMode">
+            <div  class="apply-button-container active" ng-click="contactDetailCancel.handleClick(handleContactDetailCancelClick)">
+                cancel
+                <span class="fa fa-ban dialog-footer-apply-button" aria-hidden="true"></span>
+            </div>
+            <div  class="apply-button-container active" ng-click="contactDetailDelete.handleClick(handleContactDetailDeleteClick(contactDetail.id))">
+                Delete contact
+                <span class="fa fa-trash dialog-footer-apply-button" aria-hidden="true"></span>
+            </div>
+            <!-- <div  class="apply-button-container active" ng-click="handleUpdatedContactDetails(contactDetail)"> -->
+            <div  class="apply-button-container active" ng-click="contactDetailSave.handleClick(handleContactDetailSaveClick(contactDetail))">
+                Save
+                <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
+            </div>
+        </div>
+    </dialog-footer>
+</custom-dialog>
