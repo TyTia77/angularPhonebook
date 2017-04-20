@@ -1,6 +1,8 @@
 /*jshint esversion: 6 */
 
-app.controller('dialogAddNewCtrl', [ '$scope', '$rootScope', 'myFactory', 'myService', 'buttonFactory', function($scope, $rootScope, myFactory, myService, buttonFactory) {
+app.controller('dialogAddNewCtrl', [ '$scope', '$rootScope', 'myFactory', 'myService',
+'buttonFactory', 'validateService', function($scope, $rootScope, myFactory, myService,
+buttonFactory, validateService) {
 
     $scope.openState = false;
     $scope.newContact = {};
@@ -15,6 +17,7 @@ app.controller('dialogAddNewCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySer
 
     $scope.toggle = function(){
         $scope.openState = !$scope.openState;
+        myService.checkOpenState($scope.openState);
     }
 
 
@@ -28,12 +31,28 @@ app.controller('dialogAddNewCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySer
         return false;
     }
 
+
+    // accepts input value and input validation type
+    // invokes validateservice method, returns true if validate
+    // otherwise false
+    $scope.handleBlur = function(ev, input, type){
+        console.log(ev);
+        var returned = validateService[type](input);
+        console.log(returned);
+        if (!returned){
+            ev.target.classList.add('notvalid');
+        } else{
+            ev.target.classList.remove('notvalid');
+        }
+    }
+
     $scope.handleNewContactClearAllClick = function(){
         for (let index in $scope.newContact){
             $scope.newContact[index] = '';
         }
 
         $scope.newContactClearAll.active = false;
+        $scope.newContactSubmit.active = false;
     }
 
     $scope.handleNewContactSubmitValidate = function(inputs){

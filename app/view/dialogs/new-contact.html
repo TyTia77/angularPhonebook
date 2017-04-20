@@ -1,26 +1,53 @@
 <div ng-controller="dialogAddNewCtrl">
-    <custom-dialog title="'Add new contact'" class="'dialog-add-contact'"  controller="dialogAddNewCtrl">
+    <custom-dialog header-title="'Add new contact'" class="'dialog-add-contact'"  controller="dialogAddNewCtrl">
         <dialog-body>
             <div class="dialog-body-container"   ng-keyup="newContactClearAll.validate(handleNewContactClearAllValidate, newContact)">
                 <div class="row">
                     <article>firstname</article>
-                    <article><input  type="text" ng-model="newContact.first_name" ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)"></article>
+                    <article>
+                        <input
+                            type="text"
+                            ng-model="newContact.first_name"
+                            ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)"
+                            ng-blur="handleBlur($event, newContact.first_name, 'text')">
+                    </article>
                 </div>
+
                 <div class="row">
                     <article>lastname</article>
-                    <article><input  type="text" ng-model="newContact.last_name" ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)"></article>
+                    <article>
+                        <input
+                            type="text"
+                            ng-model="newContact.last_name"
+                            ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)"
+                            ng-blur="handleBlur($event, newContact.last_name, 'text')">
+                    </article>
                 </div>
+
                 <div class="row">
                     <article>email</article>
-                    <article><input  type="text" ng-model="newContact.email"></article>
+                    <article>
+                        <input
+                            type="text"
+                            ng-model="newContact.email"
+                            ng-blur="handleBlur($event, newContact.email, 'email')">
+                    </article>
                 </div>
+
                 <div class="row">
                     <article>Mobile</article>
-                    <article><input type="text" ng-model="newContact.phone_mob"></article>
-                </div>
-                <div class="row">
-                    <article>gender</article>
                     <article>
+                        <input
+                            type="text"
+                            ng-model="newContact.phone_mob"
+                            maxlength="10"
+                            ng-blur="handleBlur($event, newContact.phone_mob, 'num')">
+                    </article>
+                </div>
+
+                <div class="row">
+                    <!-- <article>gender</article> -->
+                    <article style="margin: 0 auto;">
                         Male<input type="radio" name="gender" value="male" ng-model="newContact.gender" >
                         Female<input type="radio" name="gender" value="female" ng-model="newContact.gender" >
                     </article>

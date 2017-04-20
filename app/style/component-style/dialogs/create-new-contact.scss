@@ -4,18 +4,7 @@
     top: calc(100vh / 2 - 200px);
     left: calc(100vw / 2 - 250px);
 
-    input[type=text] {
-        width: 200px;
-        font-size: 25px;
-        height: 25px;
-        border-radius: 5px;
-        border: 2px solid lightgrey;
-        text-indent: 5px;
-
-        &:focus {
-            outline: none;
-        }
-    }
+    
 
     .apply-button-container.active {
         &:first-of-type {

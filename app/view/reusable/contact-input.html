@@ -1,0 +1,23 @@
+<div class="row">
+    <article>firstname</article>
+    <article><input  type="text" ng-model="newContact.first_name" ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)"></article>
+</div>
+<div class="row">
+    <article>lastname</article>
+    <article><input  type="text" ng-model="newContact.last_name" ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)" ></article>
+</div>
+<div class="row">
+    <article>email</article>
+    <article><input  type="text" ng-model="newContact.email" ></article>
+</div>
+<div class="row">
+    <article>Mobile</article>
+    <article><input type="text" ng-model="newContact.phone_mob" maxlength="10"></article>
+</div>
+<div class="row">
+    <article>gender</article>
+    <article>
+        Male<input type="radio" name="gender" value="male" ng-model="newContact.gender" >
+        Female<input type="radio" name="gender" value="female" ng-model="newContact.gender" >
+    </article>
+</div>

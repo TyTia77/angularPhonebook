@@ -1,6 +1,6 @@
 /*jshint esversion: 6 */
 
-app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'myService', 'buttonFactory', 'dialogContactService', function($scope, $rootScope, myFactory, myService, buttonFactory, dialogContactService) {
+app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'myService', 'buttonFactory', function($scope, $rootScope, myFactory, myService, buttonFactory) {
 
     $scope.openState = false;
 
@@ -29,15 +29,19 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
 
     // allow method to be invoked from another controller
     $rootScope.$on('toggleDialogContact', function(ev, contactId){
-        $scope.contactDetail = myService.getContactList(contactId);
+        if (contactId){
+            $scope.contactDetail = myService.getContactList(contactId);
+        }
         $scope.toggle();
     })
 
     $scope.toggle = function(){
         $scope.openState = !$scope.openState;
+        myService.checkOpenState($scope.openState);
+        if ($scope.contactDetailEditMode){
+            $scope.contactDetailEditMode = !$scope.contactDetailEditMode;
+        }
     }
-
-
 
     function handleUpdatedContactDetails(contactDetails){
         let newDetails = {};
@@ -64,7 +68,7 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
             .then(function(response){
                 console.log('successfully deleted');
                 $scope.contactDetailEditMode = !$scope.contactDetailEditMode;
-                $scope.toggle();
+                myService.updateContactInstanceState();
                 $rootScope.$emit('refreshContactList',{});
             }, function(error){
                 console.log(error);
@@ -80,11 +84,4 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
                 console.log(error);
             });
     }
-
-    $scope.$watch('openState', function(newv, oldv){
-        console.log('new '+newv);
-        console.log('old '+oldv);
-    })
-
-
 }]);

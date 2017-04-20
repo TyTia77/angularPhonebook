@@ -35,17 +35,10 @@
         }
     }
 
-    input{
-        border: none;
-        pointer-events: none;
-        transition-duration: .15s;
-        will-change: border;
-    }
-
-    .edit-mode{
-        border: 2px solid grey;
+    input.edit-mode{
+        border: 2px solid grey!important;
         padding: 5px;
-        pointer-events: all;
+        pointer-events: all!important;
 
         &:focus{
             outline: none;

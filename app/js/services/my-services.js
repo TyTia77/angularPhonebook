@@ -1,7 +1,5 @@
 app.service('myService',[ '$rootScope', function($rootScope){
 
-    var sortByValue = 'first_name';
-
     var colours = [
         '#db4540',
         '#384c7a',
@@ -11,11 +9,11 @@ app.service('myService',[ '$rootScope', function($rootScope){
         '#e6d698'
     ];
 
-    var contactList;
-
     this.getColours = function(index){
         return colours[index];
     };
+
+    var sortByValue = 'first_name';
 
     this.getSortByValue = function(){
         return sortByValue;
@@ -23,9 +21,10 @@ app.service('myService',[ '$rootScope', function($rootScope){
 
     this.setSortByValue = function(value){
         sortByValue = value;
-
         $rootScope.$emit('sortByChange', value);
     };
+
+    var contactList;
 
     this.setContactList = function(contactList){
         this.contactList = contactList;
@@ -42,4 +41,16 @@ app.service('myService',[ '$rootScope', function($rootScope){
             return this.contactList;
         }
     };
+
+    this.updateContactInstanceState = function(){
+        $rootScope.$emit('toggleDialogContact',{});
+    }
+
+    this.checkOpenState = function(state){
+        if (state){
+            $('.container').attr('faded', true);
+        } else{
+            $('.container').removeAttr('faded');
+        }
+    }
 }]);

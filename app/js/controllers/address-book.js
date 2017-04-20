@@ -4,7 +4,7 @@
 
         _ajaxGetContacts();
 
-        This.sortByValue = myService.sortByValue;
+        This.sortByValue = myService.getSortByValue();
 
         This.toggleSettingDialog = function(){
             $rootScope.$emit('toggleDialogSetting',{});
@@ -21,7 +21,7 @@
         $rootScope.$on('sortByChange', function(ev, value){
             This.sortByValue = value;
         })
-        
+
         $rootScope.$on('refreshContactList', function(){
             _ajaxGetContacts();
         })
@@ -48,10 +48,8 @@
         function _ajaxGetContacts() {
             myFactory.getContacts()
                 .then(function(response){
-                    // This.contactList = response.data.contactList;
 
                     let tempContactList = response.data.contactList;
-
                     let index = 0;
 
                     tempContactList.forEach(x => {

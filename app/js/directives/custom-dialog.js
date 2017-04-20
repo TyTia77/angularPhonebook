@@ -4,7 +4,8 @@ app.directive('customDialog', [ function(){
         restrict: 'E',
         scope: {
             // '=' - bind to attribute/property
-            title: '=',
+            // '@' - pass as string
+            headerTitle: '=',
             class: '='
         },
         // transclude: true,

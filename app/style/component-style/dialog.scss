@@ -33,7 +33,7 @@
         // display: block;
         margin: 20px;
         flex: 1 1 0;
-        display: flex;
+        // display: flex;
 
         .dialog-body-container {
             // display: flex;
@@ -56,6 +56,32 @@
                         font-size: 25px;
                         max-width: 40%;
                         color: #505161;
+                    }
+
+                    input[type=text] {
+                        width: 200px;
+                        font-size: 25px;
+                        height: 25px;
+                        border-radius: 5px;
+                        border: 2px solid lightgrey;
+                        text-indent: 5px;
+
+                        &:focus {
+                            outline: none;
+                        }
+                    }
+
+                    input.noborder{
+                        border: none;
+                        pointer-events: none;
+                        transition-duration: .15s;
+                        will-change: border;
+                    }
+
+
+
+                    input.notvalid {
+                        border: 2px solid red;
                     }
                 }
             }

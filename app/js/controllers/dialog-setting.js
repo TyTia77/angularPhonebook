@@ -12,12 +12,7 @@ app.controller('dialogSettingCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
     // methods
     $scope.toggle = function(){
         $scope.openState = !$scope.openState;
-
-        if ($scope.openState){
-            $('.container').attr('faded', true);
-        }else {
-            $('.container').removeAttr('faded');
-        }
+        myService.checkOpenState($scope.openState);
     }
 
     $scope.handleSettingValidate = function(value){

@@ -1,5 +1,5 @@
 <div ng-controller="dialogContactCtrl">
-    <custom-dialog title="'contact detail'" class="'dialog-contact'" controller="dialogContactCtrl">
+    <custom-dialog header-title="'contact detail'" class="'dialog-contact'" controller="dialogContactCtrl">
         <dialog-body>
             <div class="dialog-body-container">
                 <div class="image-container">
@@ -10,27 +10,55 @@
 
                 <div class="row">
                     <article>Firstname</article>
-                    <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.first_name"></article>
+                    <article>
+                        <input
+                            class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                            type="text"
+                            ng-model="contactDetail.first_name"></article>
                 </div>
 
                 <div class="row">
                     <article>Lastname</article>
-                    <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.last_name"></article>
+                    <article>
+                        <input
+                            class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                            type="text"
+                            ng-model="contactDetail.last_name"></article>
                 </div>
 
                 <div class="row">
                     <article>email</article>
-                    <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.email"></article>
-                </div>
-
-                <div class="row">
-                    <article>gender</article>
-                    <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.gender"></article>
+                    <article>
+                        <input
+                        class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                        type="text"
+                        ng-model="contactDetail.email"></article>
                 </div>
 
                 <div class="row">
                     <article>mobile</article>
-                    <article> <input ng-class="{'edit-mode': contactDetailEditMode}" type="text" ng-model="contactDetail.phone_mob"></article>
+                    <article>
+                        <input
+                        class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                        type="text"
+                        ng-model="contactDetail.phone_mob"
+                        maxlength="10"></article>
+                </div>
+
+                <div ng-if="!contactDetailEditMode" class="row">
+                    <article>gender</article>
+                    <article>
+                        <input
+                            class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                            type="text"
+                            ng-model="contactDetail.gender"></article>
+                </div>
+
+                <div ng-if="contactDetailEditMode" class="row">
+                    <article  style="margin: 0 auto;">
+                        Male<input type="radio" name="gender" value="male" ng-model="newContact.gender" >
+                        Female<input type="radio" name="gender" value="female" ng-model="newContact.gender" >
+                    </article>
                 </div>
 
             </div>
