@@ -5,7 +5,7 @@
                 <div class="row">
                     <article>Sort Contact By</article>
                     <article>
-                        <select name="" id="sortby" ng-model="sortByValue" ng-click="settingApply.validate(handleSettingValidate, sortByValue)">
+                        <select name="" id="sortby" ng-model="sortByValue" ng-click="handleSettingValidate(sortByValue)">
                             <option value="first_name">firstname</option>
                             <option value="last_name">lastname</option>
                         </select>
@@ -14,7 +14,7 @@
             </div>
         </dialog-body>
         <dialog-footer>
-            <div class="apply-button-container ng-class:{'active': settingApply.getActive()}"  ng-click="settingApply.handleClick(handleSettingSubmit)">
+            <div class="apply-button-container ng-class:{'active': settingApply.getState()}"  ng-click="handleSettingSubmit()">
                 Apply
                 <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
             </div>

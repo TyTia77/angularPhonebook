@@ -1,16 +1,23 @@
 <div ng-controller="dialogAddNewCtrl">
     <custom-dialog header-title="'Add new contact'" class="'dialog-add-contact'"  controller="dialogAddNewCtrl">
         <dialog-body>
-            <div class="dialog-body-container"   ng-keyup="newContactClearAll.validate(handleNewContactClearAllValidate, newContact)">
+            <!-- ng-keyup="newContactClearAll.validate(handleNewContactClearAllValidate, newContact)"> -->
+
+            <div
+                class="dialog-body-container"
+                ng-keyup="handleKeyUp(newContact)">
+
                 <div class="row">
                     <article>firstname</article>
                     <article>
                         <input
                             type="text"
-                            ng-model="newContact.first_name"
-                            ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)"
-                            ng-blur="handleBlur($event, newContact.first_name, 'text')">
+                            name="firstname"
+                            ng-model="newContact.first_name">
                     </article>
+                </div>
+                <div ng-if="error.firstname.display" class="row errormsg">
+                    {{error.firstname.msg}}
                 </div>
 
                 <div class="row">
@@ -18,10 +25,13 @@
                     <article>
                         <input
                             type="text"
-                            ng-model="newContact.last_name"
-                            ng-keyup="newContactSubmit.validate(handleNewContactSubmitValidate, newContact)"
-                            ng-blur="handleBlur($event, newContact.last_name, 'text')">
+                            name="lastname"
+                            ng-model="newContact.last_name">
                     </article>
+                </div>
+
+                <div ng-if="error.lastname.display" class="row errormsg">
+                    {{error.lastname.msg}}
                 </div>
 
                 <div class="row">
@@ -29,9 +39,13 @@
                     <article>
                         <input
                             type="text"
-                            ng-model="newContact.email"
-                            ng-blur="handleBlur($event, newContact.email, 'email')">
+                            name="email"
+                            ng-model="newContact.email">
                     </article>
+                </div>
+
+                <div ng-if="error.email.display" class="row errormsg">
+                    {{error.email.msg}}
                 </div>
 
                 <div class="row">
@@ -39,29 +53,36 @@
                     <article>
                         <input
                             type="text"
+                            name="mobile"
                             ng-model="newContact.phone_mob"
-                            maxlength="10"
-                            ng-blur="handleBlur($event, newContact.phone_mob, 'num')">
+                            maxlength="10">
                     </article>
+                </div>
+
+                <div ng-if="error.mobile.display" class="row errormsg">
+                    {{error.mobile.msg}}
                 </div>
 
                 <div class="row">
                     <!-- <article>gender</article> -->
                     <article style="margin: 0 auto;">
-                        Male<input type="radio" name="gender" value="male" ng-model="newContact.gender" >
-                        Female<input type="radio" name="gender" value="female" ng-model="newContact.gender" >
+                        Male<input type="radio" name="gender" value="male" ng-model="newContact.gender" ng-click="handleNewContactClearAllValidate()">
+                        Female<input type="radio" name="gender" value="female" ng-model="newContact.gender" ng-click="handleNewContactClearAllValidate()">
                     </article>
                 </div>
             </div>
         </dialog-body>
 
         <dialog-footer>
-            <div class="apply-button-container ng-class:{'active': newContactClearAll.getActive()}" ng-click="newContactClearAll.handleClick(handleNewContactClearAllClick)">
-                Clear All
+            <div class="apply-button-container ng-class:{'active': newContactClearAll.getState()}"
+                ng-click="handleNewContactClearAllClick()">Clear All
+
                 <span class="fa fa-minus-circle dialog-footer-apply-button" aria-hidden="true"></span>
             </div>
-            <div class="apply-button-container ng-class:{'active': newContactSubmit.getActive()}" ng-click="newContactSubmit.handleClick(handleNewContactSubmitClick)">
-                Add Contact
+
+            <div class="apply-button-container ng-class:{'active': newContactSubmit.getState()}"
+                ng-click="newContactSubmit.handleClick(handleNewContactSubmitClick)">Add Contact
+
                 <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
             </div>
         </dialog-footer>

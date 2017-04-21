@@ -4,33 +4,42 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
 
     $scope.openState = false;
 
-    $scope.contactDetailEditMode = false;
+    $scope.editMode = false;
 
-    $scope.contactDetailEdit = new buttonFactory.new(true);
-    $scope.contactDetailCancel = new buttonFactory.new(true);
-    $scope.contactDetailDelete = new buttonFactory.new(true);
-    $scope.contactDetailSave = new buttonFactory.new(true);
+    $scope.buttonEdit = new buttonFactory.new(true);
+    $scope.buttonCancel = new buttonFactory.new(true);
+    $scope.buttonDelete = new buttonFactory.new(true);
+    $scope.buttonSave = new buttonFactory.new();
+    var oldInput;
 
-    $scope.handleContactDetailEditClick = function(){
-        $scope.contactDetailEditMode = !$scope.contactDetailEditMode;
+    $scope.handleButtonEditClick = function(){
+        $scope.editMode = !$scope.editMode;
     }
 
-    $scope.handleContactDetailCancelClick = function(){
-        $scope.contactDetailEditMode = !$scope.contactDetailEditMode;
+    $scope.handleButtonCancelClick = function(){
+        $scope.contactDetail =  JSON.parse(JSON.stringify(oldInput));
+        $scope.editMode = !$scope.editMode;
+        $scope.buttonSave.setState(false);
     }
 
-    $scope.handleContactDetailDeleteClick = function(id){
+    $scope.handleButtonDeleteClick = function(id){
         _ajaxDeleteContact(id);
     }
 
-    $scope.handleContactDetailSaveClick = function(contactDetails){
+    $scope.handleButtonSaveClick = function(contactDetails){
         handleUpdatedContactDetails(contactDetails);
+    }
+
+    function getContactDetail(id){
+        $scope.contactDetail = myService.getContactList(id);
+        // clone a new object instead of a reference to an object
+        oldInput = JSON.parse(JSON.stringify($scope.contactDetail));
     }
 
     // allow method to be invoked from another controller
     $rootScope.$on('toggleDialogContact', function(ev, contactId){
         if (contactId){
-            $scope.contactDetail = myService.getContactList(contactId);
+            getContactDetail(contactId);
         }
         $scope.toggle();
     })
@@ -38,8 +47,24 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
     $scope.toggle = function(){
         $scope.openState = !$scope.openState;
         myService.checkOpenState($scope.openState);
-        if ($scope.contactDetailEditMode){
-            $scope.contactDetailEditMode = !$scope.contactDetailEditMode;
+        if ($scope.editMode){
+            $scope.editMode = !$scope.editMode;
+        }
+    }
+
+    $scope.handleInput = function(){
+        var newInput = $scope.contactDetail;
+
+        console.log(newInput);
+        console.log(oldInput);
+
+        for(var index in newInput){
+            if(newInput[index] != oldInput[index]){
+                $scope.buttonSave.setState(true);
+                return;
+            }
+            $scope.buttonSave.setState(false);
+            newInput[index]
         }
     }
 
@@ -60,14 +85,16 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
         }
 
         _ajaxUpdateContact(newDetails);
-        $scope.contactDetailEditMode = !$scope.contactDetailEditMode;
+        $scope.editMode = !$scope.editMode;
+        getContactDetail(newDetails.id);
+        $scope.buttonSave.setState(false);
     }
 
     function _ajaxDeleteContact(id){
         myFactory.deleteContact(id)
             .then(function(response){
                 console.log('successfully deleted');
-                $scope.contactDetailEditMode = !$scope.contactDetailEditMode;
+                $scope.editMode = !$scope.editMode;
                 myService.updateContactInstanceState();
                 $rootScope.$emit('refreshContactList',{});
             }, function(error){

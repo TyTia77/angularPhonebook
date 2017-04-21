@@ -1,7 +1,7 @@
 <div ng-controller="dialogContactCtrl">
     <custom-dialog header-title="'contact detail'" class="'dialog-contact'" controller="dialogContactCtrl">
         <dialog-body>
-            <div class="dialog-body-container">
+            <div class="dialog-body-container" ng-keyup="handleInput()">
                 <div class="image-container">
                      <div class="display" ng-style="{'background-color': contactDetail.colour}">
                          {{contactDetail.initials}}
@@ -12,7 +12,7 @@
                     <article>Firstname</article>
                     <article>
                         <input
-                            class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                            class="noborder ng-class:{'edit-mode': editMode}"
                             type="text"
                             ng-model="contactDetail.first_name"></article>
                 </div>
@@ -21,7 +21,7 @@
                     <article>Lastname</article>
                     <article>
                         <input
-                            class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                            class="noborder ng-class:{'edit-mode': editMode}"
                             type="text"
                             ng-model="contactDetail.last_name"></article>
                 </div>
@@ -30,7 +30,7 @@
                     <article>email</article>
                     <article>
                         <input
-                        class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                        class="noborder ng-class:{'edit-mode': editMode}"
                         type="text"
                         ng-model="contactDetail.email"></article>
                 </div>
@@ -39,25 +39,25 @@
                     <article>mobile</article>
                     <article>
                         <input
-                        class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                        class="noborder ng-class:{'edit-mode': editMode}"
                         type="text"
                         ng-model="contactDetail.phone_mob"
                         maxlength="10"></article>
                 </div>
 
-                <div ng-if="!contactDetailEditMode" class="row">
+                <div ng-if="!editMode" class="row">
                     <article>gender</article>
                     <article>
                         <input
-                            class="noborder ng-class:{'edit-mode': contactDetailEditMode}"
+                            class="noborder ng-class:{'edit-mode': editMode}"
                             type="text"
                             ng-model="contactDetail.gender"></article>
                 </div>
 
-                <div ng-if="contactDetailEditMode" class="row">
+                <div ng-if="editMode" class="row">
                     <article  style="margin: 0 auto;">
-                        Male<input type="radio" name="gender" value="male" ng-model="newContact.gender" >
-                        Female<input type="radio" name="gender" value="female" ng-model="newContact.gender" >
+                        Male<input type="radio" name="gender" value="Male" ng-model="contactDetail.gender" ng-click="handleInput()">
+                        Female<input type="radio" name="gender" value="Female" ng-model="contactDetail.gender" ng-click="handleInput()">
                     </article>
                 </div>
 
@@ -65,22 +65,22 @@
         </dialog-body>
 
         <dialog-footer>
-            <div  class="apply-button-container active" ng-if="!contactDetailEditMode" ng-click="contactDetailEdit.handleClick(handleContactDetailEditClick)">
+            <div  class="apply-button-container ng-class:{'active': buttonEdit.getState()}" ng-if="!editMode" ng-click="handleButtonEditClick()">
                 Edit
                 <span class="fa fa-pencil dialog-footer-apply-button" aria-hidden="true"></span>
             </div>
 
-            <div ng-if="contactDetailEditMode">
-                <div  class="apply-button-container active" ng-click="contactDetailCancel.handleClick(handleContactDetailCancelClick)">
+            <div ng-if="editMode">
+                <div  class="apply-button-container ng-class:{'active': buttonCancel.getState()}" ng-click="handleButtonCancelClick()">
                     cancel
                     <span class="fa fa-ban dialog-footer-apply-button" aria-hidden="true"></span>
                 </div>
-                <div  class="apply-button-container active" ng-click="contactDetailDelete.handleClick(handleContactDetailDeleteClick, contactDetail.id)">
+                <div  class="apply-button-container ng-class:{'active': buttonDelete.getState()}" ng-click="handleButtonDeleteClick(contactDetail.id)">
                     Delete contact
                     <span class="fa fa-trash dialog-footer-apply-button" aria-hidden="true"></span>
                 </div>
                 <!-- <div  class="apply-button-container active" ng-click="handleUpdatedContactDetails(contactDetail)"> -->
-                <div  class="apply-button-container active" ng-click="contactDetailSave.handleClick(handleContactDetailSaveClick(contactDetail))">
+                <div  class="apply-button-container ng-class:{'active': buttonSave.getState()}" ng-click="handleButtonSaveClick(contactDetail)">
                     Save
                     <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>
                 </div>

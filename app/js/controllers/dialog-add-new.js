@@ -6,7 +6,7 @@ buttonFactory, validateService) {
 
     $scope.openState = false;
     $scope.newContact = {};
-
+    $scope.error = validateService.errorMsgTemplate();
     $scope.newContactClearAll = new buttonFactory.new();
     $scope.newContactSubmit = new buttonFactory.new();
 
@@ -20,54 +20,100 @@ buttonFactory, validateService) {
         myService.checkOpenState($scope.openState);
     }
 
+    $scope.handleKeyUp = function(contactsInput){
+        var returned = {};
 
-    $scope.handleNewContactClearAllValidate = function(inputs){
-        for (let index in inputs){
-            if(inputs[index].length > 0){
-                return true;
-            }
+        console.log(contactsInput);
+
+        if(contactsInput.first_name ||
+            contactsInput.first_name === ''){
+            returned.firstname = validateService['text'](contactsInput.first_name);
         }
 
-        return false;
+        if(contactsInput.last_name ||
+            contactsInput.last_name === ''){
+            returned.lastname = validateService['text'](contactsInput.last_name);
+        }
+
+        if(contactsInput.phone_mob ||
+            contactsInput.phone_mob === ''){
+            returned.mobile = validateService['num'](contactsInput.phone_mob);
+        }
+
+        if(contactsInput.email ||
+            contactsInput.email === ''){
+            returned.email = validateService['email'](contactsInput.email);
+        }
+
+        console.log(returned);
+
+        _handleErrors(returned);
+        $scope.handleNewContactClearAllValidate();
+        $scope.handleNewContactSubmitValidate();
     }
 
-
-    // accepts input value and input validation type
-    // invokes validateservice method, returns true if validate
-    // otherwise false
-    $scope.handleBlur = function(ev, input, type){
-        console.log(ev);
-        var returned = validateService[type](input);
-        console.log(returned);
-        if (!returned){
-            ev.target.classList.add('notvalid');
-        } else{
-            ev.target.classList.remove('notvalid');
+    function _handleErrors(obj){
+        for (var index in obj){
+            if(!obj[index]){
+                $('input[name=' +index +']')[0].classList.add('notvalid');
+                $scope.error[index].display = true;
+            } else{
+                $('input[name=' +index +']')[0].classList.remove('notvalid');
+                $scope.error[index].display = false;
+            }
         }
+    }
+
+    $scope.handleNewContactClearAllValidate = function(){
+        console.log($scope.newContact);
+        for (let index in $scope.newContact){
+            if($scope.newContact[index].length > 0){
+                $scope.newContactClearAll.setState(true);
+                return;
+            }
+        }
+        $scope.newContactClearAll.setState(false);
     }
 
     $scope.handleNewContactClearAllClick = function(){
         for (let index in $scope.newContact){
-            $scope.newContact[index] = '';
+            delete $scope.newContact[index];
+        }
+
+        for (let index in $scope.error){
+            $scope.error[index].display = false;
+        }
+
+        var errors = $('.notvalid');
+
+        for (var index in errors){
+            if (errors[index].classList !== undefined){
+                errors[index].classList.remove('notvalid');
+            }
         }
 
         $scope.newContactClearAll.active = false;
         $scope.newContactSubmit.active = false;
     }
 
-    $scope.handleNewContactSubmitValidate = function(inputs){
-        if(inputs.first_name && inputs.last_name){
+    $scope.handleNewContactSubmitValidate = function(){
+        var inputs = $scope.newContact;
+        var errors = $('.notvalid');
+
+        if(inputs.first_name && inputs.last_name && errors.length === 0){
+            $scope.newContactSubmit.setState(true);
             return true;
         }
-
+        $scope.newContactSubmit.setState(false);
         return false;
     }
+
+
 
     $scope.handleNewContactSubmitClick = function(){
         _ajaxAddNewContact($scope.newContact);
         $scope.newContactSubmit.active = false;
     }
-
 
     function _ajaxAddNewContact(inputs){
         myFactory.insertContact(inputs)

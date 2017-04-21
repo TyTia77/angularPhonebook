@@ -17,16 +17,14 @@ app.controller('dialogSettingCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
 
     $scope.handleSettingValidate = function(value){
         if (value != prevSortBy){
-            return true;
+            $scope.settingApply.setState(true);
         }
-
-        return false;
     }
 
     $scope.handleSettingSubmit = function() {
         myService.setSortByValue($('#sortby').val());
         $scope.sortByValue = $('#sortby').val();
-        $scope.settingApply.active = false;
+        $scope.settingApply.setState(false);
         prevSortBy = $('#sortby').val();
     }
 

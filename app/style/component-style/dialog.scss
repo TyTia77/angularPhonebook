@@ -17,7 +17,7 @@
     header {
         display: inline;
         position: relative;
-        font-size: 40px;
+        font-size: 20px;
         background-color: $blue;
         // background: $greenblue;
         padding: 10px;
@@ -84,6 +84,13 @@
                         border: 2px solid red;
                     }
                 }
+            }
+
+            .errormsg{
+                display: block;
+                color: red;
+                // width: 100%;
+                text-align: center;
             }
         }
     }
