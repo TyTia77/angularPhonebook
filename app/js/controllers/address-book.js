@@ -28,21 +28,17 @@
 
         // checks if there is a scrollbar in the contact list and adjusts the header
         // accordingly
-        const _checkListViewScrollbar = () => {
-            try{
-                let headerDom = $('.listview-header') || false;
-                let headerWidth = headerDom[0].clientWidth;
-                let bodyWidth = $('.listview')[0].clientWidth;
+        var _checkListViewScrollbar = function(){
 
-                if (headerWidth > bodyWidth) {
-                    let variation = -Math.abs(headerWidth - bodyWidth);
-                    headerDom.css('left', variation + 'px');
-                } else {
-                    headerDom.css('left', '0px');
-                }
-            }
-            catch(err){
-                console.log(err);
+            let headerDom = $('.listview-header') || false;
+            let headerWidth = headerDom[0].clientWidth;
+            let bodyWidth = $('.listview')[0].clientWidth;
+
+            if (headerWidth > bodyWidth) {
+                let variation = -Math.abs(headerWidth - bodyWidth);
+                headerDom.css('left', variation + 'px');
+            } else {
+                headerDom.css('left', '0px');
             }
         };
 
@@ -50,17 +46,11 @@
             myFactory.getContacts()
                 .then(function(response){
 
-                    let tempContactList = response.data.contactList;
-                    let index = 0;
+                    var tempContactList = response.data.contactList.map(function(contact){
+                        contact.initials = contact.first_name[0].toUpperCase()+ contact.last_name[0].toUpperCase();
+                        contact.colour = myService.getColours();
 
-                    tempContactList.forEach(x => {
-                        let first = x.first_name[0].toUpperCase();
-                        let last = x.last_name[0].toUpperCase();
-                        let rand = Math.floor((Math.random() * 6));
-
-                        tempContactList[index].initials = first + last;
-                        tempContactList[index].colour = myService.getColours(rand);
-                        index++;
+                        return contact;
                     });
 
                     myService.setContactList(tempContactList);

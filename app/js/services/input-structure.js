@@ -27,6 +27,7 @@ app.service('inputStructure',[ '$rootScope', function($rootScope){
                 },
                 gender: {
                     multi: true,
+                    id: 'gender',
                     label: 'gender',
                     entries: {
                         male:{
@@ -43,7 +44,17 @@ app.service('inputStructure',[ '$rootScope', function($rootScope){
                 }
             };
 
-    this.getInputs = function(){
-        return inputs;
+    function getIdLabel(id){
+        var tempArr = [];
+
+        for (var i in inputs){
+            tempArr.push(inputs[i][id]);
+        }
+
+        return tempArr;
+    }
+
+    this.getInputs = function(id){
+        return id ? getIdLabel(id): inputs;
     };
 }]);

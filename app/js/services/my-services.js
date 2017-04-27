@@ -6,11 +6,16 @@ app.service('myService',[ '$rootScope', function($rootScope){
         '#6cde9b',
         '#b07142',
         '#b771e0',
-        '#e6d698'
+        '#e6d698',
+        '#000',
+        'lightgrey',
+        'pink'
     ];
 
-    this.getColours = function(index){
-        return colours[index];
+    this.getColours = function(){
+        return colours[Math.floor(
+                (Math.random() * colours.length)
+            )];
     };
 
     var sortByValue = 'first_name';
@@ -30,8 +35,12 @@ app.service('myService',[ '$rootScope', function($rootScope){
         this.contactList = contactList;
     };
 
+    function findContact(contactId, contacts){
+        return contacts.id === contactId;
+    }
+
     this.getContactList = function(index){
-        return index ? this.contactList.find(contact => contact.id === index)
+        return index ? this.contactList.find(findContact.bind(null, index))
                           : this.contactList;
     };
 

@@ -101,6 +101,7 @@ buttonFactory, validateService, inputStructure) {
             $scope.newContactSubmit.setState(true);
             return true;
         }
+
         $scope.newContactSubmit.setState(false);
         return false;
     }

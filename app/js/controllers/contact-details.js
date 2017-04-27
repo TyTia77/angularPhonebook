@@ -120,37 +120,28 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
     function _handleErrors(errors){
 
         for (var index in errors){
-            console.log(index);
             if(!errors[index]){
                 $('input[name=cd-' +index +']')[0].classList.add('notvalid');
                 $scope.error[index].display = true;
             }
         }
 
-        var errorstest = $('.notvalid');
+        var isErrors = $('.notvalid');
 
-        if(errorstest.length === 0){
-            $scope.buttonSave.setState(true);
-        } else{
-            $scope.buttonSave.setState(false);
-        }
+        isErrors.length === 0 ? $scope.buttonSave.setState(true)
+                                        : $scope.buttonSave.setState(false);
     }
 
     function handleUpdatedContactDetails(contactDetails){
         let newDetails = {};
+        let addProperties = inputStructure.getInputs('id');
+        addProperties.push('id');
 
-        for (let index in contactDetails){
-            switch(index){
-                case '$$hashKey':
-                case 'colour':
-                case 'initials':
-                    break;
-
-                default:
-                    newDetails[index] = contactDetails[index];
-                    break;
+        Object.keys(contactDetails).filter(function(prop){
+            if (addProperties.indexOf(prop) !== -1){
+                newDetails[prop] = contactDetails[prop];
             }
-        }
+        });
 
         _ajaxUpdateContact(newDetails);
         $scope.editMode = !$scope.editMode;
@@ -166,10 +157,8 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
                 myService.updateContactInstanceState();
                 $rootScope.$emit('refreshContactList',{});
             }, function(error){
-                console.log('gg');
                 console.log(error);
             });
-
     }
 
     function  _ajaxUpdateContact(data){
@@ -180,4 +169,5 @@ app.controller('dialogContactCtrl', [ '$scope', '$rootScope', 'myFactory', 'mySe
                 console.log(error);
             });
     }
+    
 }]);
