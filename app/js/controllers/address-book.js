@@ -26,7 +26,8 @@
             _ajaxGetContacts();
         })
 
-        // TODO functions
+        // checks if there is a scrollbar in the contact list and adjusts the header
+        // accordingly
         const _checkListViewScrollbar = () => {
             try{
                 let headerDom = $('.listview-header') || false;
@@ -65,10 +66,6 @@
                     myService.setContactList(tempContactList);
                     This.contactList = myService.getContactList();
 
-
-                    // tells angular to check for changes
-                    // This.$apply();
-                    // This.$digest();
                     setTimeout(function(){
                         _checkListViewScrollbar();
                     }, 1);

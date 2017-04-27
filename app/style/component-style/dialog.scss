@@ -3,7 +3,7 @@
 @import 'dialogs/settings';
 
 .dialog {
-    display: flex;
+    display: inline-block;
     flex-direction: column;
     position: absolute;
     background-color: white;
@@ -13,53 +13,52 @@
     border-radius: 5px;
     box-shadow: $shadow;
     will-change: opacity;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 
     header {
-        display: inline;
+        display: block;
         position: relative;
         font-size: 20px;
         background-color: $blue;
-        // background: $greenblue;
         padding: 10px;
         box-sizing: border-box;
         color: white;
         text-align: left;
         letter-spacing: 2px;
         text-transform: capitalize;
-        // box-shadow: 0px 4px 12px -1px #000;
     }
 
     section {
-        // display: block;
         margin: 20px;
-        flex: 1 1 0;
-        // display: flex;
+        padding-bottom: 20px;
 
         .dialog-body-container {
             // display: flex;
-            flex-direction: column;
+            // flex-direction: column;
             width: 100%;
-            // height: calc(100% - 20px);
 
             .row {
                 display: flex;
                 flex-direction: row;
-                align-items: center;
-                height: 100%;
+                flex: 1 1 auto;
 
                 article {
-                    flex: 1 1 0;
+                    flex: 1 1 auto;
                     padding: 10px;
+                    text-align: right;
 
                     &:nth-of-type(2n + 1) {
-                        text-align: right;
+                        text-align: left;
                         font-size: 25px;
-                        max-width: 40%;
                         color: #505161;
                     }
 
                     input[type=text] {
-                        width: 200px;
+                        // flex: 1;
+                        // max-width: 200px;
+                        // width: 30%;
                         font-size: 25px;
                         height: 25px;
                         border-radius: 5px;
@@ -73,12 +72,11 @@
 
                     input.noborder{
                         border: none;
+                        width: 310px;
                         pointer-events: none;
                         transition-duration: .15s;
                         will-change: border;
                     }
-
-
 
                     input.notvalid {
                         border: 2px solid red;
@@ -89,7 +87,6 @@
             .errormsg{
                 display: block;
                 color: red;
-                // width: 100%;
                 text-align: center;
             }
         }
@@ -117,6 +114,8 @@
 
     footer {
         display: block;
+        padding: 0px 15px;
+        // background-color: blue;
         text-align: center;
         font-size: 30px;
         color: lightgrey;

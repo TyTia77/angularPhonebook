@@ -8,60 +8,53 @@
                      </div>
                 </div>
 
-                <div class="row">
-                    <article>Firstname</article>
-                    <article>
-                        <input
-                            class="noborder ng-class:{'edit-mode': editMode}"
-                            type="text"
-                            ng-model="contactDetail.first_name"></article>
-                </div>
+                <div ng-repeat="item in inputStructure">
+                    <div ng-if="!item.multi">
+                        <div class="row">
+                            <article>{{item.label}}</article>
+                            <article>
+                                <input
+                                    style="width: {{inputWidth}}px"
+                                    type="{{item.input}}"
+                                    name="cd-{{item.label}}"
+                                    class="noborder ng-class:{'edit-mode': editMode}"
+                                    ng-model="contactDetail[item.id]">
+                            </article>
+                        </div>
 
-                <div class="row">
-                    <article>Lastname</article>
-                    <article>
-                        <input
-                            class="noborder ng-class:{'edit-mode': editMode}"
-                            type="text"
-                            ng-model="contactDetail.last_name"></article>
-                </div>
+                        <div class="row" ng-if="error[item.label].display">
+                            {{error[item.label].msg}}
+                        </div>
+                    </div>
 
-                <div class="row">
-                    <article>email</article>
-                    <article>
-                        <input
-                        class="noborder ng-class:{'edit-mode': editMode}"
-                        type="text"
-                        ng-model="contactDetail.email"></article>
-                </div>
+                    <div ng-if="item.multi">
+                        <div ng-if="!editMode" class="row">
+                            <article>{{item.label}}</article>
+                            <article>
+                                <input
+                                    style="width: {{inputWidth}}px"
+                                    class="noborder ng-class:{'edit-mode': editMode}"
+                                    type="text"
+                                    ng-model="contactDetail[item.label]"></article>
+                        </div>
 
-                <div class="row">
-                    <article>mobile</article>
-                    <article>
-                        <input
-                        class="noborder ng-class:{'edit-mode': editMode}"
-                        type="text"
-                        ng-model="contactDetail.phone_mob"
-                        maxlength="10"></article>
+                        <div ng-if="editMode" class="row">
+                            <article  style="text-align: center;">
+                                <span ng-repeat="entry in item.entries">
+                                    {{entry.label}}
+                                    <input
+                                        type="{{entry.input}}"
+                                        name="{{item.label}}"
+                                        value="{{entry.label}}"
+                                        ng-model="contactDetail[item.label]"
+                                        ng-click="handleInput()">
+                                </span>
+                            </article>
+                        </div>
+                    </div>
                 </div>
-
-                <div ng-if="!editMode" class="row">
-                    <article>gender</article>
-                    <article>
-                        <input
-                            class="noborder ng-class:{'edit-mode': editMode}"
-                            type="text"
-                            ng-model="contactDetail.gender"></article>
-                </div>
-
-                <div ng-if="editMode" class="row">
-                    <article  style="margin: 0 auto;">
-                        Male<input type="radio" name="gender" value="Male" ng-model="contactDetail.gender" ng-click="handleInput()">
-                        Female<input type="radio" name="gender" value="Female" ng-model="contactDetail.gender" ng-click="handleInput()">
-                    </article>
-                </div>
-
             </div>
+
         </dialog-body>
 
         <dialog-footer>
@@ -79,7 +72,6 @@
                     Delete contact
                     <span class="fa fa-trash dialog-footer-apply-button" aria-hidden="true"></span>
                 </div>
-                <!-- <div  class="apply-button-container active" ng-click="handleUpdatedContactDetails(contactDetail)"> -->
                 <div  class="apply-button-container ng-class:{'active': buttonSave.getState()}" ng-click="handleButtonSaveClick(contactDetail)">
                     Save
                     <span class="fa fa-check-circle dialog-footer-apply-button" aria-hidden="true"></span>

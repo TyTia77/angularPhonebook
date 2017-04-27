@@ -1,14 +1,15 @@
 /*jshint esversion: 6 */
 
 app.controller('dialogAddNewCtrl', [ '$scope', '$rootScope', 'myFactory', 'myService',
-'buttonFactory', 'validateService', function($scope, $rootScope, myFactory, myService,
-buttonFactory, validateService) {
+'buttonFactory', 'validateService', 'inputStructure', function($scope, $rootScope, myFactory, myService,
+buttonFactory, validateService, inputStructure) {
 
     $scope.openState = false;
     $scope.newContact = {};
     $scope.error = validateService.errorMsgTemplate();
     $scope.newContactClearAll = new buttonFactory.new();
     $scope.newContactSubmit = new buttonFactory.new();
+    $scope.inputStructure = inputStructure.getInputs();
 
     // allow method to be invoked from another controller
     $rootScope.$on('toggleDialogAddNew', function(){
@@ -22,8 +23,6 @@ buttonFactory, validateService) {
 
     $scope.handleKeyUp = function(contactsInput){
         var returned = {};
-
-        console.log(contactsInput);
 
         if(contactsInput.first_name ||
             contactsInput.first_name === ''){
@@ -44,8 +43,6 @@ buttonFactory, validateService) {
             contactsInput.email === ''){
             returned.email = validateService['email'](contactsInput.email);
         }
-
-        console.log(returned);
 
         _handleErrors(returned);
         $scope.handleNewContactClearAllValidate();
@@ -107,8 +104,6 @@ buttonFactory, validateService) {
         $scope.newContactSubmit.setState(false);
         return false;
     }
-
-
 
     $scope.handleNewContactSubmitClick = function(){
         _ajaxAddNewContact($scope.newContact);

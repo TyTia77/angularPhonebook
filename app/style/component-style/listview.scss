@@ -40,7 +40,6 @@
 
         &:first-of-type {
             text-align: center;
-            // font-size: 40px;
             padding: 0;
             color: #fff;
         }
@@ -69,9 +68,16 @@
     transition-duration: $transition;
 
     &:hover {
-        color: orange;
+        // color: white;
         cursor: pointer;
-        // border-bottom: 5px solid lightgrey;
+        // background-color: rgba(0,0,0,.4);
+        // background-color: red;
+        border-right: 20px solid red;
+        transform: translateX(-10px);
+
+        // border-left: 20px solid rgba(255,255,255,0);
+        // transform: scale(1.2,1.2);
+
     }
     // @include hoverScale;
 }
