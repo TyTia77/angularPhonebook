@@ -33,19 +33,6 @@ app.service('myService',[ '$rootScope', function($rootScope){
     this.getContactList = function(index){
         return index ? this.contactList.find(contact => contact.id === index)
                           : this.contactList;
-
-        // if(index){
-        //     // for (let i in this.contactList){
-        //     //     if(this.contactList[i].id == index){
-        //     //         return this.contactList[i];
-        //     //     }
-        //     // }
-        //     return this.contactList.find(function(contact){
-        //         return contact.id === index;
-        //     });
-        // } else{
-        //     return this.contactList;
-        // }
     };
 
     this.updateContactInstanceState = function(){
@@ -55,11 +42,5 @@ app.service('myService',[ '$rootScope', function($rootScope){
     this.checkOpenState = function(state){
         state ? $('.container').attr('faded', true)
                 : $('.container').removeAttr('faded');
-
-        // if (state){
-        //     $('.container').attr('faded', true);
-        // } else{
-        //     $('.container').removeAttr('faded');
-        // }
     }
 }]);
